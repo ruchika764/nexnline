@@ -1,0 +1,190 @@
+/* @media only screen and (max-width: 1199px) { */
+
+/* } */
+/* @media only screen and (max-width: 1024px) { */
+/* } */
+/* @media only screen and (max-width: 991px) { */
+/* } */
+@media only screen and (min-width: 768px)  and (max-width:991px){
+
+.pricing-plans .section-heading {
+    text-align: center;
+}
+.pricing-plans .section-heading p{
+      max-width: 100%;
+
+}
+.pricing-plans .single-pricing-table
+{
+	margin-top:30px;
+}.footer .footer-menu {
+  
+    padding: 0;
+}.footer ul li a {
+    font-size: 13px;
+}.footer .footer-links ul
+	{
+		 padding-left:0px;
+	}
+		.footer .footer-links ul li
+	{
+		margin-left: 5px;
+        margin-right: 5px;
+	}
+	.about-us p {
+    font-size: 16px;
+}
+.industries .card_single .card-text h3 {
+    font-size: 18px;
+}.industries .card_single .card-text p , .join-us .cta_box_inner p {
+    font-size: 14px;
+}.join-us .cta_box_inner h2 {
+    line-height: normal;
+}
+.mb-mob-15{
+	margin-bottom:15px;
+}.card .card-body .fc .fc-toolbar-title {
+    font-size: 14px;
+}.fc .fc-button-group > .fc-button {
+    font-size: 10px;
+}.case-study h5.card-title {
+    font-size: 18px;
+}
+}
+@media only screen and (max-width: 767px) {
+	.booking-steps .card-booking {
+    padding: 15px;
+}.mb-mob-15{
+	margin-bottom:15px;
+}.modal.drawer .modal-header ul.nav-tabs li button.nav-link {
+    padding: 6px 14px;
+}.card .card-body .fc .fc-toolbar-title {
+    font-size: 14px;
+}.card .card-body .fc .fc-button-group > .fc-button , .card .card-body .fc .fc-button {
+    font-size: 10px;
+}.case-study h5.card-title {
+    font-size: 18px;
+}.case-study .card-img-top {
+    height: 230px;
+}
+.card-booking .btn-nav {
+    padding: 0 11px;
+}.booking-steps {
+    padding: 50px 0;
+}
+	section.industries.ptb-90 {
+		padding-top: 65px!important;
+    padding-bottom: 65px!important;
+}
+.industries .card_single .card-text h3 {
+    font-size: 18px;
+}.industries .card_single .card-text p , .join-us .cta_box_inner p {
+    font-size: 14px;
+}
+.view-case-study-main .case-main .case-img img {
+    height: 310px;
+}	
+.about-us p {
+    font-size: 16px;
+}.banner .search-form
+{
+	flex-direction:column
+}
+.banner .search-form input{
+	margin-bottom:15px;
+}
+	.footer .footer-links ul
+	{
+		 padding-left:0px;
+	}
+	.footer .footer-links ul li
+	{
+		margin-left: 5px;
+        margin-right: 5px;
+	}
+
+
+	.footer .footer-menu {
+  
+    padding: 0;
+}.footer ul li a {
+    font-size: 13px;
+}
+		header#myHeader  ul.navbar-nav {
+    border-top: 1px solid #eee;
+	    margin-top: 10px;
+}
+.pricing-plans .section-heading {
+    text-align: center;
+}
+.pricing-plans .section-heading p{
+      max-width: 100%;
+
+}
+.pricing-plans .single-pricing-table
+{
+	margin-top:30px;
+	margin-bottom: 0;
+}
+.contact-info {
+ margin-bottom:15px;	
+}
+.accordion .accordion-item button.accordion-button {
+    line-height: 1.5;    padding: 12px 20px;
+}
+.industries .card_single
+{
+	margin-bottom:15px;
+}
+.flex-inner .f-image {
+  margin-bottom:25px;
+}
+.flex-inner {
+    margin: 30px 0;
+}
+.about-us .about-img {
+    padding: 0px;
+	margin-bottom: 20px;
+	margin-top:25px;
+}
+.about-us {
+    padding: 65px 0;
+}
+.join-us.about-join {
+    height: auto;
+    padding: 65px 0px;
+}
+}
+@media only screen and (min-width: 480px)
+{
+.flex-inner .f-text {
+    flex: 1;
+    text-align: left;
+}
+}
+@media only screen and (min-width:768px)
+{
+	.flex-inner .f-text p {
+    font-size: 16px;
+    font-weight: 500;
+}
+	.flex-inner .f-image {
+    flex: 0 0 400px;
+}
+.footer .footer-logo {
+    text-align: left;
+}
+.footer .footer-menu {
+    text-align: right;
+    margin: 0;
+}
+.footer .footer-links ul {
+    text-align: right;
+}
+.flex-inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 35px 0 0 0;
+}
+}
