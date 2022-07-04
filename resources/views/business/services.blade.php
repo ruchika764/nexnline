@@ -31,6 +31,11 @@
 										<div class="col-6 text-end">
 											<a href="javascript:void(0)" class="btn-action btn-nav" data-bs-toggle="modal" data-bs-target="#serviceModal">Add New</a>
 										</div>
+										<div class="form-group mb-0 mt-2">
+                  							<div class="input-group">
+                    							<input type="text" class="form-control" placeholder="Search" aria-label="Username" name="search_input" id="search_input">
+              								</div>
+                						</div>
 									</div>
 								</div>
 								
@@ -141,7 +146,8 @@
 		<div class="modal fade" id="editserviceModal" tabindex="-1" aria-labelledby="editserviceModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<form method="POST" name="edit_service_form" id="edit_service_form" action="{{ route('business.update_services') }}">
-                  @csrf
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+				<div class="modal-content">
                   <input type="hidden" name="serviceid" value="" id="serviceid">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -180,10 +186,10 @@
 											   Image
 											</label>
 										    <div class="profileimg">
-										    	<i class="fa fa-camera"></i>
-											     <img class="editserviceimg" src="" style="display: none;" src="img/service1.jpg"/>
+										    	<!-- <i class="fa fa-camera"></i> -->
+											     <img class="editserviceimg" src="" style="display: none;" />
 											   </div>
-										    <label for="profileimg" class="browsebtn">
+										    <label for="editprofileimg" class="browsebtn">
 											  Browse
 											</label>
 											<input type="file" id="editprofileimg" name="editprofileimg" style="display:none"/>
@@ -222,7 +228,7 @@
 	$(document).ready(function(){
 		$('.imgicon').css('display','block');
 		$('.serviceimg').css('display','none');
-	})
+	});
 	$(function(){
 $('#profileimg').on('change', function() {
     var file = $(this).get(0).files;
@@ -246,9 +252,9 @@ $('#editprofileimg').on('change', function() {
     reader.addEventListener("load", function(e) {
     var image = e.target.result;
     console.log(image,'image');
-    $('.imgicon').css('display','none');
-    $('.serviceimg').css('display','block');
-	$(".serviceimg").attr('src', image);
+    // $('.imgicon').css('display','none');
+    $('.editserviceimg').css('display','block');
+	$(".editserviceimg").attr('src', image);
 });
 });
 });
@@ -347,7 +353,7 @@ $('#editprofileimg').on('change', function() {
             ajax: { 
                 url: '{{Route("business.get_serviceListing")}}', 
                 data : function (d) {
-                    d.name = $('input[name=name]').val();
+                    d.name = $('input[name=search_input]').val();
                     // d.daterange = $('input[name=daterange]').val();
                 }
             },
@@ -376,6 +382,11 @@ $('#editprofileimg').on('change', function() {
                         }
                     ]
         });
+
+        $('#search_input').on('keyup', function(e) {
+      		oTable.draw();
+      		e.preventDefault();
+    	});
 
          $(document).on('click', '.delete_service', function(e){
     		var serviceid = $(this).attr('data-id');
@@ -428,6 +439,12 @@ $('#editprofileimg').on('change', function() {
 	          var duration = getduration.split(":");
 	          $('#edit_duration').val(duration[1]);
 	          $('#edit_price').val(d.price);
+	          var Image =  d.image;
+	          var base_url = '{!! url('/') !!}';
+	          var flagsUrl = base_url + '/assets/business/services/' +Image;
+	          console.log(flagsUrl);
+	          $('.editserviceimg').css('display','block');
+	          $('.editserviceimg').attr('src',flagsUrl);
 	        });
 	        $('#editserviceModal').modal('show');
 	      }

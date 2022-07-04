@@ -101,6 +101,11 @@ Route::namespace('App\Http\Controllers\business')->name('business.')->prefix('bu
 
 	//resources routes starts
 	Route::get('/resources', [App\Http\Controllers\business\ResourceController::class, 'resources'])->name('resources')->middleware('auth:user');
+	Route::post('/save_resource', [App\Http\Controllers\business\ResourceController::class, 'save_resource'])->name('save_resource');
+	Route::get('/get_resourceListing', [App\Http\Controllers\business\ResourceController::class, 'get_resourceListing'])->name('get_resourceListing')->middleware('auth:user');
+	Route::post('/delete_resource', [App\Http\Controllers\business\ResourceController::class, 'delete_resource'])->name('delete_resource')->middleware('auth:user');
+	Route::post('/getresource', [App\Http\Controllers\business\ResourceController::class, 'getresource'])->name('getresource')->middleware('auth:user');
+	Route::post('/update_resources', [App\Http\Controllers\business\ResourceController::class, 'update_resources'])->name('update_resources');
 	//resources routes ends
 
 	//services routes starts
@@ -111,6 +116,15 @@ Route::namespace('App\Http\Controllers\business')->name('business.')->prefix('bu
 	Route::post('/getservices', [App\Http\Controllers\business\ServiceController::class, 'getservices'])->name('getservices')->middleware('auth:user');
 	Route::post('/update_services', [App\Http\Controllers\business\ServiceController::class, 'update_services'])->name('update_services');
 	//services routes ends
+
+	//customers routes starts
+	Route::get('/customers', [App\Http\Controllers\business\CustomerController::class, 'customers'])->name('customers')->middleware('auth:user');
+	Route::post('/save_customer', [App\Http\Controllers\business\CustomerController::class, 'save_customer'])->name('save_customer')->middleware('auth:user');
+	Route::get('/get_customerListing', [App\Http\Controllers\business\CustomerController::class, 'get_customerListing'])->name('get_customerListing')->middleware('auth:user');
+	Route::post('/delete_customer', [App\Http\Controllers\business\CustomerController::class, 'delete_customer'])->name('delete_customer')->middleware('auth:user');
+	Route::post('/getcustomer', [App\Http\Controllers\business\CustomerController::class, 'getcustomer'])->name('getcustomer')->middleware('auth:user');
+	Route::post('/update_customer', [App\Http\Controllers\business\CustomerController::class, 'update_customer'])->name('update_customer');
+	//customers routes ends
 	
 });
 //business routes ends

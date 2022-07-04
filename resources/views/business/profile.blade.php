@@ -115,10 +115,11 @@
 										  <div class="col-md-3">
 										  <div class="form-group uploadimg">
 										    <label>
-											  Profile Image
+											   Image
 											</label>
 										    <div class="profileimg">
-											     <i class="fa fa-camera"></i>
+											     <!-- <i class="fa fa-camera imgicon"></i> -->
+											     <img class="serviceimg" src="{{$image}}"/>
 											   </div>
 										    <label for="profileimg" class="browsebtn">
 											  Browse
@@ -507,14 +508,19 @@
 @section('scripts')
 <script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
 <script type="text/javascript">
+	$(document).ready(function(){
+		$('.imgicon').css('display','none');
+	});
 $(function(){
-$('#avatar').on('change', function() {
+$('#profileimg').on('change', function() {
     var file = $(this).get(0).files;
     var reader = new FileReader();
     reader.readAsDataURL(file[0]);
     reader.addEventListener("load", function(e) {
     var image = e.target.result;
-$("#imagePreview").attr('src', image);
+    console.log(image,'image');
+    $('.imgicon').css('display','none');
+	$(".serviceimg").attr('src', image);
 });
 });
 });

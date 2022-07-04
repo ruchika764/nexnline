@@ -1,198 +1,108 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Customers </title>
-		<link rel="icon" href="img/favicon.png" sizes="16x16" type="image/png">
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<link href="css/dataTables.bootstrap5.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="css/jquery.mCustomScrollbar.css" />
-		<link href="css/style.css" rel="stylesheet">
-		<link href="css/responsive.css" rel="stylesheet">
-		<link href="css/animation.css" rel="stylesheet">
-	</head>
-	<body>
-		<!-- Header Start -->
-		<header id="myHeader">
-			<nav class="navbar navbar-expand-md navbar-dark p-0">
-				<div class="container">
-					<a class="navbar-brand" href="index.html"><img src="img/logo.png"/></a>
-					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-					<img src="img/toggleNavbar.svg">
-					</button>
-					<div class="collapse navbar-collapse" id="navbarCollapse">
-						<ul class="navbar-nav ms-auto">
-							<li class="nav-item">
-								<a class="nav-link"  href="index.html">Home</a>
-							</li>
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">List My Business</a>
-								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<li><a class="dropdown-item" href="#">Solutions</a></li>
-									<li><a class="dropdown-item" href="#">Industries</a></li>
-									<li><a class="dropdown-item" href="case-studies.html">Case Studies</a></li>
-									<li><a class="dropdown-item" href="pricing.html">Pricing</a></li>
-									<li><a class="dropdown-item" href="#">Free Trial</a></li>
-								</ul>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="contact-us.html">Contact Us</a>
-							</li>
-							<li class="nav-item user-dropdown dropdown ">
-								<a href="javascript:void(0)" class="dropdown-toggle nav-link p-0" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><span class="user-img"><i class="fa fa-user-o"></i></span> Andrew James</a>
-								<ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-								    <li><a class="dropdown-item " href="profile.html"><i class="fa fa-user-o" aria-hidden="true"></i> Profile</a></li>
-									<li><a class="dropdown-item " href="login.html"><i class="fa fa-sign-out" aria-hidden="true"></i> Log Out</a></li>
-								</ul>
-							</li>
-							<!-- <li><a class="btn-nav" href="javascript:void(0)">Free Trial</a></li> -->
-						</ul>
-					</div>
+@extends('business.layouts.app')
+@section('title', 'Customers')
+@section('content')
+<div class="wrapper">
+	<!-- Banner Start -->
+	<section class="breadcrumb-main">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h1>Customers</h1>
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item active"><a href="index.html">Home</a></li>
+						<li class="breadcrumb-item">Customers</li>
+					</ol>
 				</div>
-			</nav>
-		</header>
-		<!-- Header End -->
-		<div class="wrapper">
-			<!-- Banner Start -->
-			<section class="breadcrumb-main">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12">
-							<h1>Customers</h1>
-							<ol class="breadcrumb">
-								<li class="breadcrumb-item active"><a href="index.html">Home</a></li>
-								<li class="breadcrumb-item">Customers</li>
-							</ol>
-						</div>
-					</div>
-				</div>
-			</section>
-			<!-- Banner End -->
-			<div class="my-account">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-4 col-xl-3 col-xxl-3 col-md-4  mb-mob-15">
-							<nav class="dashboard-nav my-10 mb-md-0">
-								<div class="top-main-bf">
-									<div class="userinfo">
-										<div class="img-edt">
-											<i class="fa fa-user usericon"></i>
-										</div>
-										<h4> Andrew James </h4>
-									</div>
+			</div>
+		</div>
+	</section>
+	<!-- Banner End -->
+	<div class="my-account">
+		<div class="container">
+			<div class="row">
+				@include('business.layouts.sidebar')
+				<div class="col-lg-8 col-xl-9 col-xxl-9 col-md-8">
+					<div class="card">
+						<div class="card-header p-3">
+							<div class="row align-items-center">
+								<div class="col-6">
+									<h2 class="card-title">Customers </h2>
 								</div>
-								<ul>
-								    <li class="sideitem ">
-										<a href="waitlist.html">
-										<i class="fa fa-tachometer"></i><span>Dashboard</span>            
-										</a>
-									</li>
-									<li class="sideitem ">
-										<a href="waitlist.html">
-										<i class="fa fa-clock-o"></i><span>Waitlist</span>            
-										</a>
-									</li>
-									<li class="sideitem ">
-										<a href="serving.html">
-										<i class="fa fa-check-square-o"></i><span>Serving</span>            
-										</a>
-									</li>
-									<li class="sideitem">
-										<a href="bookings.html">
-										<i class="fa fa-calendar-o"></i><span>Bookings</span>            
-										</a>
-									</li>
-									<li class="sideitem ">
-										<a href="messages.html">
-										<i class="fa fa-comment-o"></i><span>Messages</span>            
-										</a>
-									</li>
-									<li class="sideitem active">
-										<a href="customers.html">
-										<i class="fa fa-user-o"></i><span>Customers</span>            
-										</a>
-									</li>
-									<li class="sideitem">
-										<a href="services.html">
-											<i class="fa fa-file-o"></i><span>Services</span>    
-										</a>
-									</li>
-									<li class="sideitem">
-										<a href="resources.html">
-										<i class="fa fa-cogs"></i><span>Resources</span>            
-										</a>
-									</li>
-									<li class="sideitem">
-										<a href="settings.html">
-										<i class="fa fa-cog"></i><span>Settings</span>            
-										</a>
-									</li>
-									<li class="sideitem ">
-										<a href="login.html">
-										<i class="fa fa-sign-out"></i><span>Logout</span>            
-										</a>
-									</li>
-								</ul>
-							</nav>
-						</div>
-						<div class="col-lg-8 col-xl-9 col-xxl-9 col-md-8">
-							<div class="card">
-								<div class="card-header p-3">
-									<div class="row align-items-center">
-										<div class="col-6">
-											<h2 class="card-title">Customers </h2>
-										</div>
-										<div class="col-6 text-end">
-											<a href="javascript:void(0)" class="btn-action btn-nav" data-bs-toggle="modal" data-bs-target="#waitlistModal">Add New</a>
-										</div>
-									</div>
+								<div class="col-6 text-end">
+									<a href="javascript:void(0)" class="btn-action btn-nav" data-bs-toggle="modal" data-bs-target="#waitlistModal">Add New</a>
 								</div>
-								<div class="card-body p-3">
-										<div class="row align-items-center mb-3 customerfilter">
-										<div class="col-md-12 d-flex justify-content-between">
-										<div class="input-group">
-										    <i class="fa fa-calendar"></i>
-											<select class="btn-select">
-											  <option>Today</option>
-											  <option>Last 24 Hours</option>
-											  <option>Last 7 Days</option>
-											  <option>Last 30 Days</option>
-											  <option>Yesterday</option>
-											  <option>This Week</option>
-											  <option>Last Week</option>											
-											  <option>This Month</option>
-											  <option>Last Month</option>
-											  <option>This Year</option>
-											  <option>All Time</option>
-											</select>
-										</div>
-										<div class="input-group ">
+								<div class="form-group mb-0 mt-2">
+                  							<div class="input-group">
+                    							<input type="text" class="form-control" placeholder="Search" aria-label="Username" name="search_input" id="search_input">
+              								</div>
+                						</div>
+							</div>
+						</div>
+						<div class="card-body p-3">
+							<div class="row align-items-center mb-3 customerfilter">
+								<div class="col-md-12 d-flex justify-content-between">
+									<div class="input-group">
+									    <i class="fa fa-calendar"></i>
+										<select class="btn-select">
+									 	 	<option>Today</option>
+										  	<option>Last 24 Hours</option>
+										  	<option>Last 7 Days</option>
+										  	<option>Last 30 Days</option>
+									  		<option>Yesterday</option>
+										  	<option>This Week</option>
+										  	<option>Last Week</option>				
+										  	<option>This Month</option>
+										  	<option>Last Month</option>
+										  	<option>This Year</option>
+										  	<option>All Time</option>
+										</select>
+									</div>
+									<div class="input-group ">
 										<i class="fa fa-clock-o"></i>
-											<select class="btn-select">
-											  <option>Any Status</option>
-											  <option>Waiting</option>
-											  <option>Serving</option>
-											  <option>Completed</option>
-											  <option>Booked</option>
-											</select>
-										</div>
-										</div>
+										<select class="btn-select">
+										  	<option>Any Status</option>
+										  	<option>Waiting</option>
+										  	<option>Serving</option>
+										  	<option>Completed</option>
+										  	<option>Booked</option>
+										</select>
 									</div>
-									<div class="tablescroll">
-										<div class=" mCustomScrollbar" data-mcs-theme="dark">
-											<table id="example" class="table table-striped" style="width:100%">
-												<thead>
-													<tr>
-														<th>Name</th>
-														<th>Phone No</th>
-														<th>Visit</th>
-														<th>Last updated</th>
-														<th>Action</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
+								</div>
+							</div>
+							<div id="response">
+						      @if(Session::has('message'))
+						      <div class="alert alert-success alert-dismissable">
+						       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						       {{ Session::get('message') }}
+						      </div>
+						      @endif
+						      @if(Session::has('error'))
+						      <div class="alert alert-danger alert-dismissable">
+						       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						       {{ Session::get('error') }}
+						      </div>
+						      @endif
+						      @if($errors->has('error_card'))
+						      <div class="alert alert-danger alert-dismissable">
+						       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						       {{ $errors->first('error_card') }}
+						      </div>
+						      @endif
+   							</div>
+							<div class="tablescroll">
+								<div class=" mCustomScrollbar" data-mcs-theme="dark">
+									<table class="table table-striped" id="customer_table">
+										<thead>
+											<tr>
+												<th>Name</th>
+												<th>Phone No</th>
+												<th>Visit</th>
+												<th>Last updated</th>
+												<th>Action</th>
+											</tr>
+											</thead>
+												<tbody id="customer_tableListing">
+													<!-- <tr>
 														<td><a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#detailModal"><b>John Smith</b></a></td>
 														<td>078965 41200</td>
 														<td>2</td>
@@ -286,7 +196,7 @@
 																</ul>
 															</div>
 														</td>
-													</tr>
+													</tr> -->
 												</tbody>
 											</table>
 										</div>
@@ -298,42 +208,11 @@
 				</div>
 			</div>
 		</div>
-		<!-- Footer Start -->
-		<footer class="footer">
-			<div class="container">
-				<div class="row text-center align-items-center">
-					<div class="col-lg-2 col-md-3 col-sm-12">
-						<div class="footer-logo">
-							<img src="img/logo-white.png"/>
-						</div>
-					</div>
-					<div class="col-lg-6 col-md-6 col-sm-12">
-						<ul class="footer-menu">
-							<li><a href="about-us.html">About</a> </li>
-							<li><a href="privacy-policy.html">Privacy</a> </li>
-							<li><a href="terms.html">Terms Of Use</a> </li>
-							<li><a href="faq.html">FAQs</a> </li>
-						</ul>
-					</div>
-					<div class="col-lg-4 col-md-3 col-sm-12">
-						<div class="footer-links">
-							<ul>
-								<li><a href="javascript:void(0)"> <img class="img-fluid" src="img/icons/in.png" alt="Icon"> </a> </li>
-								<li><a href="javascript:void(0)"> <img class="img-fluid" src="img/icons/li.png" alt="Icon"> </a> </li>
-								<li><a href="javascript:void(0)"> <img class="img-fluid" src="img/icons/tw.png" alt="Icon"> </a> </li>
-								<li><a href="javascript:void(0)"> <img class="img-fluid" src="img/icons/tt.png" alt="Icon"> </a> </li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<!-- Scroll To Top -->
-				<a id="back-top" class="back-to-top js-scroll-trigger" href="javascript:void(0)"></a>
-				<!-- Scroll To Top Ends-->
-			</div>
-		</footer>
-		<!-- Footer End -->
+		
 		<div class="modal fade" id="waitlistModal" tabindex="-1" aria-labelledby="waitlistModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
+				<form method="POST" id="client_form" name="client_form"  enctype="multipart/form-data" action="{{route('business.save_customer')}}">
+					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="exampleModalLabel">Add Client</h5>
@@ -344,34 +223,38 @@
 							<div class="col-md-12">
 								<div class="form-group">
 									<label>Client Name</label>
-									<input type="text" name="name" class="form-control" placeholder="Enter Client Name">
+									<input type="text" name="client_name" id="client_name" class="form-control" placeholder="Enter Client Name">
 								</div>
 							</div>
 							<div class="col-md-12">
 								<div class="form-group">
 									<label>Phone</label>
-									<input type="tel" name="phone" class="form-control" placeholder="Enter Phone No">
+									<input type="tel" name="client_number" id="client_number" class="form-control" placeholder="Enter Phone No">
 								</div>
 							</div>
 							<div class="col-md-12">
 								<div class="form-group">
 									<label>Notes</label>
-									<input type="text" name="notes" class="form-control" placeholder="Additional Notes">
+									<input type="text" name="client_notes" id="client_notes" class="form-control" placeholder="Additional Notes">
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn-nav btn-action">Add</button>
+						<button type="submit" class="btn-nav btn-action">Add</button>
 					</div>
 				</div>
+			</form>
 			</div>
 		</div>
 		<div class="modal fade" id="editwaitlistModal" tabindex="-1" aria-labelledby="waitlistModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
+				<form method="POST" name="edit_customer_form" id="edit_customer_form" action="{{ route('business.update_customer') }}">
+                  	<input type="hidden" name="_token" value="{{ csrf_token() }}">
+                  	<input type="hidden" name="customer_id" value="" id="customer_id">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Edit  John</h5>
+						<h5 class="modal-title edit_title" id="exampleModalLabel"></h5>
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
@@ -379,21 +262,22 @@
 							<div class="col-md-12">
 								<div class="form-group">
 									<label>Client Name</label>
-									<input type="text" name="name" class="form-control" placeholder="Enter Client Name" value="John Smith">
+									<input type="text" name="edit_name" id="edit_name" class="form-control" placeholder="Enter Client Name" value="">
 								</div>
 							</div>
 							<div class="col-md-12">
 								<div class="form-group">
 									<label>Phone</label>
-									<input type="tel" name="phone" class="form-control" placeholder="Enter Phone No" value="987654210">
+									<input type="tel" name="edit_phone" id="edit_phone" class="form-control" placeholder="Enter Phone No" value="">
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn-nav btn-action">Save</button>
+						<button type="submit" class="btn-nav btn-action">Save</button>
 					</div>
 				</div>
+			</form>
 			</div>
 		</div>
 	
@@ -798,13 +682,214 @@
 				</div>
 			</div>
 		</div>
-		<script src="js/jquery.min.js"></script>
-		<script src="js/bootstrap.bundle.min.js"></script>
-		<script src="js/owl.carousel.js"></script>
-		<script src="js/animation.js"></script>
-		<script src="js/jquery.dataTables.min.js"></script>
-		<script src="js/dataTables.bootstrap5.min.js"></script>
-		<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-		<script src="js/main.js"></script>
-	</body>
-</html>
+
+		<!-- delete modal starts-->
+		<div class="modal fade" id="delete-popup" role="dialog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    		<input type="hidden" name="customerid" id ="customerid"/>
+       	 	<div class="modal-dialog modal-dialog-centered">
+            	<div class="modal-content">
+                	<div class="modal-body">
+                    	<div class="delete-cont">
+                        	<p>Are you sure you want to delete this item ?</p>
+                    	</div>
+                	</div>
+                	<div class="modal-footer">
+                    	<button type="button" class="btn btn-secondary" id="Cancel" data-dismiss="modal" style="border-radius: 50px;">Cancel</button>
+                    	<button type="button" style="border-radius: 50px; background-color: #a3dbba; border-color:#a3dbba; border: #a3dbba;" class="btn btn-danger" id="confirm">Delete</button>
+                	</div>
+            	</div>
+        	</div>
+    	</div>
+    	<!-- delete modal ends-->
+	@endsection
+
+@section('scripts')
+<script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
+<script>
+    $(function() {
+
+    $.validator.methods.phoneUS = function( value, element ) {
+        var filter = /^(\+91-|\+91|0)?\d{7,15}$/;
+    if (filter.test(value)) {
+      
+        return true;
+    }
+    else {
+     
+        return false;
+    }
+    }
+
+    $("form[name='client_form']").validate({
+    	ignore: [],
+    // Specify validation rules
+    rules: {
+    client_name: {
+        required: true,
+      },
+      client_number: {
+        required: true,
+        phoneUS: true
+      }
+    },
+    // Specify validation error messages
+    messages: {
+      client_name:{
+         required: "<strong>Please enter client name</strong>",
+      },
+      client_number: {
+        required: "<strong>Please enter phone number</strong>",
+        phoneUS: "<strong>Phone number length should be in between 7-15 digits</strong>"
+      }
+    },
+    // Make sure the form is submitted to the destination defined
+    // in the "action" attribute of the form when valid
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+
+    $("form[name='edit_customer_form']").validate({
+    	ignore: [],
+    // Specify validation rules
+    rules: {
+    edit_name: {
+        required: true,
+      },
+      edit_phone: {
+        required: true,
+        phoneUS: true
+      }
+    },
+    // Specify validation error messages
+    messages: {
+      edit_name:{
+         required: "<strong>Please enter client name</strong>",
+      },
+      edit_phone: {
+        required: "<strong>Please enter phone number</strong>",
+        phoneUS: "<strong>Phone number length should be in between 7-15 digits</strong>"
+      }
+    },
+    // Make sure the form is submitted to the destination defined
+    // in the "action" attribute of the form when valid
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function(e){      
+        var oTable = $('#customer_table').DataTable({
+            "sDom": "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+            bDestroy: true,
+            processing: true,
+            serverSide: true,
+            ajax: { 
+                url: '{{Route("business.get_customerListing")}}', 
+                data : function (d) {
+                    d.name = $('input[name=search_input]').val();
+                    // d.daterange = $('input[name=daterange]').val();
+                }
+            },
+            ordering: true,
+            button: false,
+            scrollX: true,
+            scrollCollapse: true,
+            autoWidth: false,
+            oLanguage: {
+                sEmptyTable: 'No records found!!',
+            },
+          
+            columns: [     
+                        {
+                            data: 'name',
+                            name: 'Name'
+                        },
+                        {
+                            data: 'phone_number',
+                            name: 'Phone No.'
+                        },
+                        {
+                            data: 'visit_count',
+                            name: 'Visit'
+                        },
+                        {
+                            data: 'updated_at',
+                            name: 'Last Updated'
+                        },
+                        {
+                            data: 'action',
+                            name: 'Action',
+                            orderable: false
+                        }
+                    ]
+        });
+
+        $('#search_input').on('keyup', function(e) {
+      		oTable.draw();
+      		e.preventDefault();
+    	});
+
+         $(document).on('click', '.delete_customer', function(e){
+    		var customerid = $(this).attr('data-id');
+    		$('#customerid').val(customerid);
+    		$('#delete-popup').modal('show');
+  		});
+
+        $(document).on('click', '#Cancel', function(e){
+    		$('#delete-popup').modal('hide');
+  		});
+
+	     $(document).on('click', '#confirm', function(e){  
+	    var deleted_id = $('#customerid').val();
+	    $.ajax({
+	      url: '{{Route("business.delete_customer")}}',
+	      type: 'POST',
+	      data : {
+	              '_token': "{{ csrf_token() }}",
+	              'deleted_id' : deleted_id
+	          },
+	      success: function(response) {
+	          if ($.isEmptyObject(response.error)) {
+	              window.location.href = "{{route('business.customers')}}";
+	              $(window).scrollTop(0);
+	          } else {
+	              printErrorMsg(response.error);
+	          }
+	        }
+	    });
+	  });
+
+ 	$(document).on('click', '.edit_customer', function() {
+
+	    var id = $(this).data("id");
+	    $.ajax({
+	      headers: {
+	        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	      },
+	      url: '{{ route("business.getcustomer") }}',
+	      type: 'POST',
+	      data: {
+	        id: id
+	      },
+	      success: function(response) {
+	        $.each(response.customer_data, function(i, d) {
+	          $('#customer_id').val(d.id);
+	          $('.edit_title').html(d.name);
+	          $('#edit_name').val(d.name);
+	          $('#edit_phone').val(d.phone_number);
+	        });
+	        $('#editwaitlistModal').modal('show');
+	      }
+	    });
+
+
+  	});
+
+     });
+</script>
+@endsection

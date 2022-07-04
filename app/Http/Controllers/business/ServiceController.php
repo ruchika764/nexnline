@@ -82,16 +82,11 @@ class ServiceController extends Controller
         
        $data = services::select('*')->where('is_deleted','=','0')->where('status','=','1');
 
-        // if($request->has('name')){
-        //     $data->where(function($query) use($request) {
-        //         $query->where('id', 'LIKE', "%{$request->name}%" )
-        //             ->orWhere ( 'company_name', 'LIKE', "%{$request->name}%" )
-        //             ->orWhere ( 'contact_name', 'LIKE', "%{$request->name}%" )
-        //             ->orWhere ( 'company_phone', 'LIKE', "%{$request->name}%" )
-        //             ->orWhere ( 'email', 'LIKE', "%{$request->name}%" )
-        //             ->orWhere ( 'keywords', 'LIKE', "%{$request->name}%" )->where('id','!=','1');
-        //     });
-        // }
+        if($request->has('name')){
+            $data->where(function($query) use($request) {
+                $query->Where ( 'service_name', 'LIKE', "%{$request->name}%" );
+            });
+        }
 
         // if ($request->get('status') != '') {
         //     $data = $data->where('status',$request->get('status'));
@@ -166,6 +161,7 @@ class ServiceController extends Controller
 
     //post method function for adding new service
     public function update_services(Request $request){
+        dd($request->all());
         $id = $request->serviceid;
         $Services = Services::findOrFail($id);
         
@@ -186,7 +182,6 @@ class ServiceController extends Controller
           } 
 
                 
-        $input = $request->all();
         $oldphoto = $Services['image'];
         if($request->hasfile('editprofileimg')){
             $file = $request->file('editprofileimg');

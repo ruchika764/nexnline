@@ -34,8 +34,8 @@
 										<i class="fa fa-comment-o"></i><span>Messages</span>            
 										</a>
 									</li>
-									<li class="sideitem ">
-										<a href="customers.html">
+									<li class="sideitem {{ (\Request::route()->getName() =='business.customers') ?  'active' : '' }}">
+										<a href="{{route('business.customers')}}">
 										<i class="fa fa-user-o"></i><span>Customers</span>            
 										</a>
 									</li>

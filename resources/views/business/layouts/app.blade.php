@@ -15,6 +15,8 @@
 	  	<link href="{{ asset('assets/css/animation.css') }}" rel="stylesheet">
 	  	<link rel="stylesheet" href="{{ asset('assets/css/chosen.min.css') }}" />
 		<link rel="stylesheet" href="{{ asset('assets/css/select2.min.css') }}" />
+		<!-- <link rel="stylesheet" href="{{ asset('assets/css/plugins.bundle.css') }}" />
+		<link rel="stylesheet" href="{{ asset('assets/css/prismjs/prismjs.bundle.css') }}" /> -->
 	  	@yield('head')
 	</head>
 	<body>
@@ -95,6 +97,9 @@
           </div>
 </footer>
 		<!-- Footer End -->
+        <!-- <script src="{{ asset('assets/js/plugins.bundle.js') }}"></script> -->
+        <!-- <script src="{{ asset('assets/js/prismjs/prismjs.bundle.js') }}"></script> -->
+        <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
 		<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
       <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
      <script src="{{ asset('assets/js/owl.carousel.js') }}"></script>

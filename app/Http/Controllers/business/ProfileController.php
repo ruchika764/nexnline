@@ -48,15 +48,15 @@ class ProfileController extends Controller
                 
         $input = $request->all();
         $oldphoto = $User['avatar'];
-        if($request->hasfile('avatar')){
-            $file = $request->file('avatar');
+        if($request->hasfile('profileimg')){
+            $file = $request->file('profileimg');
             $extension = $file->getClientOriginalExtension();
             $filename = time() .  '.' . $extension;
             $file->move('assets/business/',$filename);
-            $input['avatar'] = $filename;
+            $User->avatar = $filename;
             if($oldphoto != '' && $oldphoto != 'default.jpg')
             { 
-                $image = 'assets/business/'.$oldphoto;
+                $image = 'assets/services/'.$oldphoto;
                 // $filename = str_replace('app\Http\Controllers\Admin', '', __DIR__).$image;
                 // unlink($filename);
                  if(\File::exists($image)) {
