@@ -41,24 +41,23 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="row mb-3">
+                              <div class="row mb-3">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember"  <?php if(isset($_COOKIE['useremail'])){echo 'checked';}?>>
-                                    <label class="form-check-label" for="remember">
+                                  <input class="form-check-input" type="checkbox" name="remember" id="remember"  <?php if(isset($_COOKIE['useremail'])){echo 'checked';}?>>
+                                  <label class="form-check-label" for="remember">
                                         {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            
-                        </div>
+                                  </label>
+                                </div> 
+                              </div>
                             </div>
                             
                             <div class="customcheckbox text-end">
                                 <span><a href="{{ route('business.forgot_password') }}">Forgot Password ?</a></span>
                             </div>
-                                                <div class="form-group">
-                                                    <button type="submit" class="btn-nav btn-login" name="submit-btn">Login</button>
-                                                </div>
-                                            </form>
+                            <div class="form-group">
+                                <button type="submit" class="btn-nav btn-login" name="submit-btn">Login</button>
+                            </div>
+                          </form>
                                             <div class="bottom-box">
                                               <div class="text">Don't have an account? <a href="{{route('business.signup')}}" class="signup">Signup</a></div>
                                             </div>

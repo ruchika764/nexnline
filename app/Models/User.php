@@ -32,7 +32,9 @@ class User extends Authenticatable
         'stored_permission',
         'status',
         'is_deleted',
-        'avatar'
+        'avatar',
+        'waitlist_public_link',
+        'booking_public_link'
     ];
 
     /**

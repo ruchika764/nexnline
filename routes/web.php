@@ -124,7 +124,19 @@ Route::namespace('App\Http\Controllers\business')->name('business.')->prefix('bu
 	Route::post('/delete_customer', [App\Http\Controllers\business\CustomerController::class, 'delete_customer'])->name('delete_customer')->middleware('auth:user');
 	Route::post('/getcustomer', [App\Http\Controllers\business\CustomerController::class, 'getcustomer'])->name('getcustomer')->middleware('auth:user');
 	Route::post('/update_customer', [App\Http\Controllers\business\CustomerController::class, 'update_customer'])->name('update_customer');
+	Route::post('/getnotes', [App\Http\Controllers\business\CustomerController::class, 'getnotes'])->name('getnotes')->middleware('auth:user');
+	Route::post('/save_notes', [App\Http\Controllers\business\CustomerController::class, 'save_notes'])->name('save_notes')->middleware('auth:user');
+	Route::post('/geteditnotes', [App\Http\Controllers\business\CustomerController::class, 'geteditnotes'])->name('geteditnotes')->middleware('auth:user');
+	Route::post('/update_notes', [App\Http\Controllers\business\CustomerController::class, 'update_notes'])->name('update_notes')->middleware('auth:user');
 	//customers routes ends
+
+	//settings routes starts
+	Route::get('/settings', [App\Http\Controllers\business\SettingsController::class, 'settings'])->name('settings')->middleware('auth:user');
+	Route::post('/save_field', [App\Http\Controllers\business\SettingsController::class, 'save_field'])->name('save_field')->middleware('auth:user');
+	Route::post('/getfields', [App\Http\Controllers\business\SettingsController::class, 'getfields'])->name('getfields')->middleware('auth:user');
+	Route::post('/update_fields', [App\Http\Controllers\business\SettingsController::class, 'update_fields'])->name('update_fields')->middleware('auth:user');
+	Route::post('/updatetoggle', [App\Http\Controllers\business\SettingsController::class, 'updatetoggle'])->name('updatetoggle')->middleware('auth:user');
+	//settings routes ends
 	
 });
 //business routes ends

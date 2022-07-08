@@ -28,6 +28,8 @@ class CreateUsersTable extends Migration
             $table->string('status')->default('0');
             $table->string('is_deleted')->default('0');
             $table->string('email',100)->unique();
+            $table->string('waitlist_public_link')->nullable();
+            $table->string('booking_public_link')->nullable();
             $table->string('avatar')->default('default.jpg');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

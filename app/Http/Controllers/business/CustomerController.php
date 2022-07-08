@@ -121,11 +121,34 @@ class CustomerController extends Controller
 							</div>';
 				// Tue, May 24 2022, 2:31pm
                 $last_modified = Carbon::createFromFormat('Y-m-d H:i:s', $post->updated_at)->format('D, M d Y, h:i:A');
-                
-                $nestedData['name'] = !empty(@$post->name) ? $post->name : "N/A";
-                $nestedData['phone_number'] = !empty(@$post->phone_number) ? $post->phone_number : "N/A";
-                $nestedData['visit_count'] = !empty(@$post->visit_count) ? $post->visit_count : "N/A";
-                $nestedData['updated_at'] = !empty(@$last_modified) ? $last_modified : "N/A";
+                if(!empty($post->name)){
+                	$set_name = '<a class ="get_details" style = "cursor: pointer;" href="javascript:void(0)"  data-id="'.$post->id.'"><b>'.$post->name.'</b></a>';
+                }else{
+                	$set_name = "N/A";
+                }
+
+                if(!empty($post->phone_number)){
+                	$set_number = '<a class ="get_details" style = "cursor: pointer;" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#detailModal"  data-id="'.$post->id.'">'.$post->phone_number.'</a>';
+                }else{
+                	$set_number = "N/A";
+                }
+
+                if(!empty($post->visit_count)){
+                	$set_count = '<a class ="get_details" style = "cursor: pointer;" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#detailModal"  data-id="'.$post->id.'">'.$post->visit_count.'</a>';
+                }else{
+                	$set_count = "N/A";
+                }
+
+                if(!empty($post->updated_at)){
+                	$set_date = '<a class ="get_details" style = "cursor: pointer;" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#detailModal"  data-id="'.$post->id.'">'.$last_modified.'</a>';
+                }else{
+                	$set_date = "N/A";
+                }
+
+                $nestedData['name'] = $set_name;
+                $nestedData['phone_number'] = $set_number;
+                $nestedData['visit_count'] = $set_count;
+                $nestedData['updated_at'] = $set_date;
                 $nestedData['action'] = $action_html;
                 $data[] = $nestedData;
 
@@ -185,6 +208,84 @@ class CustomerController extends Controller
         $customer->save();
        Session::flash('message', 'Customer Updated Successfully!!');
        return redirect(route('business.customers'));
+    }
+
+    public function getnotes(Request $request)
+    {
+        $customer_id = $request->id;
+        $user_id =  Auth::User()->id;
+        $notes_data = customer_notes::select('*')->where('customer_id', $customer_id)->where('user_id',$user_id)->where('status','=','1')->where('is_deleted','=','0')->orderBy('created_at','desc')->get();
+        return response()->json(['success' => true, 'notes_data' => $notes_data]);
+    }
+
+    //post method function for adding new resource
+    public function save_notes(Request $request){
+        $user_id = Auth::user()->id;
+        $customer_id = $request->customerId;
+        //laravel validations to check the valid fields
+        $validator = Validator::make($request->all(),
+        [
+          'addnotes' => ['required']
+        ]);
+         
+        //check if the field validations are failed
+         if ($validator->fails())
+          {
+            return redirect(route('business.customers'))->withErrors($validator)->withInput();
+          }
+                
+        $input = $request->all();
+
+        //add data for notes if added code starts
+        if(isset($request->addnotes) && $request->addnotes != ''){
+        	$add_notes = new customer_notes();
+        	$add_notes->user_id = $user_id;
+        	$add_notes->customer_id = $customer_id;
+        	$add_notes->notes_data = $request->addnotes;
+        	$add_notes->save();
+        
+        }
+        $get_data = customer_notes::select('*')->where('customer_id', $customer_id)->where('user_id',$user_id)->where('status','=','1')->where('is_deleted','=','0')->orderBy('created_at','desc')->get();
+        //add data for notes if added code ends
+       	return response()->json(['success' => true, 'notes_data' => $get_data]);
+    }
+
+    public function geteditnotes(Request $request)
+    {
+        $id = $request->id;
+        $notes_data = customer_notes::select('*')->where('id', $id)->where('status','=','1')->where('is_deleted','=','0')->orderBy('created_at','desc')->get();
+        return response()->json(['success' => true, 'notes_data' => $notes_data]);
+    }
+
+
+    //post method function for adding new resource
+    public function update_notes(Request $request){
+        $notes_id = $request->Id;
+
+        //laravel validations to check the valid fields
+        $validator = Validator::make($request->all(),
+        [
+          'editnotes' => ['required']
+        ]);
+         
+        //check if the field validations are failed
+         if ($validator->fails())
+          {
+            return redirect(route('business.customers'))->withErrors($validator)->withInput();
+          }
+                
+        $input = $request->all();
+
+        $Editnotes = customer_notes::select('*')->where('id',$notes_id)->first();
+        //add data for notes if added code starts
+        if(isset($request->editnotes) && $request->editnotes != ''){
+        	$Editnotes->notes_data = $request->editnotes;
+        	$Editnotes->save();
+        
+        }
+        $get_data = customer_notes::select('*')->where('customer_id', $Editnotes->customer_id)->where('user_id',$Editnotes->user_id)->where('status','=','1')->where('is_deleted','=','0')->orderBy('created_at','desc')->get();
+        //add data for notes if added code ends
+       	return response()->json(['success' => true, 'notes_data' => $get_data]);
     }
 
 }

@@ -49,8 +49,8 @@
 										<i class="fa fa-cogs"></i><span>Resources</span>            
 										</a>
 									</li>
-									<li class="sideitem">
-										<a href="settings.html">
+									<li class="sideitem {{ (\Request::route()->getName() =='business.settings') ?  'active' : '' }}">
+										<a href="{{route('business.settings')}}">
 										<i class="fa fa-cog"></i><span>Settings</span>            
 										</a>
 									</li>

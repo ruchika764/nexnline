@@ -251,6 +251,7 @@ $('#editprofileimg').on('change', function() {
     reader.readAsDataURL(file[0]);
     reader.addEventListener("load", function(e) {
     var image = e.target.result;
+    // console.log(image);
     console.log(image,'image');
     // $('.imgicon').css('display','none');
     $('.editserviceimg').css('display','block');

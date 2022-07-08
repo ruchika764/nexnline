@@ -283,7 +283,11 @@
 	
 		
 		<div class="modal fade" id="addnoteModal" tabindex="-1" aria-labelledby="addnoteModalLabel" aria-hidden="true">
+			
 			<div class="modal-dialog">
+				<form method="POST" name="add_notes_form" id="add_notes_form" enctype="multipart/form-data">
+                  	<input type="hidden" name="_token" value="{{ csrf_token() }}">
+                  	<input type="hidden" name="customerId" id="customerId">
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="exampleModalLabel">Add Note</h5>
@@ -294,20 +298,24 @@
 							<div class="col-md-12">
 								<div class="form-group">
 									<label>Note</label>
-									<textarea  class="form-control" placeholder="Write your note..." rows="5"></textarea>
+									<textarea  class="form-control" placeholder="Write your note..." rows="8"name="addnotes" id="addnotes"></textarea>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn-clear btn-nav btn-action">Cancel</button>
-						<button type="button" class="btn-nav btn-action">Save</button>
+						<button type="save" class="btn-nav btn-action">Save</button>
 					</div>
 				</div>
+			</form>
 			</div>
 		</div>
 		<div class="modal fade" id="editnoteModal" tabindex="-1" aria-labelledby="editnoteModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
+				<form method="POST" name="edit_notes_form" id="edit_notes_form" enctype="multipart/form-data">
+                  	<input type="hidden" name="_token" value="{{ csrf_token() }}">
+                  	<input type="hidden" name="Id" id="Id">
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="exampleModalLabel">Edit Note</h5>
@@ -318,16 +326,17 @@
 							<div class="col-md-12">
 								<div class="form-group">
 									<label>Note</label>
-									<textarea  class="form-control" placeholder="Write your note..." rows="5">Lorem Porem Ipsum</textarea>
+									<textarea  class="form-control" placeholder="Write your note..." rows="8" id="editnotes" name="editnotes"></textarea>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn-clear btn-nav btn-action">Cancel</button>
-						<button type="button" class="btn-nav btn-action">Save</button>
+						<button type="submit" class="btn-nav btn-action">Save</button>
 					</div>
 				</div>
+			</form>
 			</div>
 		</div>
 		<div class="modal fade drawer right-align" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
@@ -335,7 +344,7 @@
 				<div class="modal-content"  id="abc">
 					<div class="modal-header">
 						<div class="modal-inner">
-							<h5 class="modal-title" id="exampleModalLabel">John</h5>
+							<h5 class="modal-title username" id="exampleModalLabel"></h5>
 							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
 						<ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -346,7 +355,7 @@
 								<button class="nav-link" id="chat-tab" data-bs-toggle="tab" data-bs-target="#chat" type="button" role="tab" aria-controls="chat" aria-selected="false">Chat</button>
 							</li>
 							<li class="nav-item" role="presentation">
-								<button class="nav-link" id="notes-tab" data-bs-toggle="tab" data-bs-target="#notes" type="button" role="tab" aria-controls="notes" aria-selected="false">Notes</button>
+								<button class="nav-link " id="notes-tab notesclass" data-bs-toggle="tab" data-bs-target="#notes" type="button" role="tab" aria-controls="notes" aria-selected="false">Notes</button>
 							</li>
 							<li class="nav-item" role="presentation">
 								<button class="nav-link" id="visits-tab" data-bs-toggle="tab" data-bs-target="#visits" type="button" role="tab" aria-controls="visits" aria-selected="false">Visits(4)</button>
@@ -378,31 +387,31 @@
 								<div class="form-group detailmain">
 									<div class="d-flex justify-content-between">
 										<span class="detail-left">Phone</span>
-										<span class="detail-right">078965 41200</span>
+										<span class="detail-right userphone"></span>
 									</div>
 								</div>
 								<div class="form-group detailmain">
 									<div class="d-flex justify-content-between">
 										<span class="detail-left">Number Of Visits</span>
-										<span class="detail-right">2</span>
+										<span class="detail-right uservisit"></span>
 									</div>
 								</div>
 								<div class="form-group detailmain">
 									<div class="d-flex justify-content-between">
 										<span class="detail-left">Created</span>
-										<span class="detail-right">Mon, May 23 2022, 12:28pm</span>
+										<span class="detail-right userdate"></span>
 									</div>
 								</div>
 								<div class="form-group detailmain">
 									<div class="d-flex justify-content-between">
 										<span class="detail-left">Last State</span>
-										<span class="detail-right">Waiting</span>
+										<span class="detail-right userstate"></span>
 									</div>
 								</div>
 									<div class="form-group detailmain">
 									<div class="d-flex justify-content-between">
 										<span class="detail-left">Last Visit</span>
-										<span class="detail-right">Today</span>
+										<span class="detail-right userlastvisit"></span>
 									</div>
 								</div>
 							</div>
@@ -456,34 +465,8 @@
 								</div>
 							</div>
 							<div class="tab-pane fade" id="notes" role="tabpanel" aria-labelledby="notes-tab">
-								<div class="notes-main">
-									<div class="d-flex align-items-center notes-inner">
-										<div class="flex-grow-1 me-3 ">
-											<p class="para mb-0">Lorem Porem Ipsum dolor.</p>
-											<small class="text-muted"><i>May 24th at 11:23 AM </i></small>
-										</div>
-										<div class="flex-shrink-0">
-											<a class="edit-icon" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#editnoteModal"><i class="fa fa-pencil"></i></a>
-										</div>
-									</div>
-									<div class="d-flex align-items-center notes-inner">
-										<div class="flex-grow-1 me-3 ">
-											<p class="para mb-0">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-											<small class="text-muted"><i>May 24th at 11:23 AM </i></small>
-										</div>
-										<div class="flex-shrink-0">
-											<a class="edit-icon" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#editnoteModal"><i class="fa fa-pencil"></i></a>
-										</div>
-									</div>
-									<div class="d-flex align-items-center notes-inner">
-										<div class="flex-grow-1 me-3 ">
-											<p class="para mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium</p>
-											<small class="text-muted"><i>May 24th at 11:23 AM </i></small>
-										</div>
-										<div class="flex-shrink-0">
-											<a class="edit-icon" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#editnoteModal"><i class="fa fa-pencil"></i></a>
-										</div>
-									</div>
+								<div class="notes-main" id="getnotesData">
+									
 								</div>
 							</div>
 							<div class="tab-pane fade" id="visits" role="tabpanel" aria-labelledby="visits-tab">
@@ -705,6 +688,7 @@
 
 @section('scripts')
 <script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 <script>
     $(function() {
 
@@ -748,6 +732,134 @@
       form.submit();
     }
   });
+
+    $("form[name='add_notes_form']").validate({
+    	ignore: [],
+    // Specify validation rules
+    rules: {
+    addnotes: {
+        required: true,
+      },
+    },
+    // Specify validation error messages
+    messages: {
+      addnotes:{
+         required: "<strong>Please enter notes</strong>",
+      }
+    },
+    // Make sure the form is submitted to the destination defined
+    // in the "action" attribute of the form when valid
+    submitHandler: function(form) {
+    	var customerId = $('#customerId').val();
+    	var notesdata = $('#addnotes').val();
+      	$.ajax({
+	      url: '{{Route("business.save_notes")}}',
+	      type: 'POST',
+	      data : {
+	              '_token': "{{ csrf_token() }}",
+	              'customerId' : customerId,
+	              'addnotes' : notesdata
+	          },
+	      success: function(response) {
+	          if ($.isEmptyObject(response.error)) {
+	              var data =  response.notes_data;
+	              var temp = '';
+			      	if(data.length > 0){
+				      		$.each(data, function(i, d) {
+				        	let created_at = d.created_at;
+				          	let first_date = moment(created_at, 'YYYY-MM-DD HH:mm:ss').format('ddd, MMMM DD YYYY HH:mm:A');
+				          	$('#customerId').val(d.customer_id);
+				          	
+				          	temp += '<div class="d-flex align-items-center notes-inner "><div class="flex-grow-1 me-3 ">';
+				          	temp += '<p class="para mb-0">'+ d.notes_data +'</p>';
+							temp += '<small class="text-muted"><i>' +first_date + '</i></small></div>';
+							temp += '<div class="flex-shrink-0">';
+							temp += '<a class="edit-icon edit_notes" href="javascript:void(0)" data-id="'+ d.id +'"><i class="fa fa-pencil"></i></a></div></div>';
+							document.getElementById('getnotesData').innerHTML = temp;
+							$('#addnoteModal').modal('hide');
+
+				        });
+				      		
+			      	}else{
+			      	
+				          	temp += '<div class="d-flex align-items-center notes-inner "><div class="flex-grow-1 me-3 ">';
+				          	temp += '<p class="para mb-0" style="text-align:center; color:#a3dbba;"><b>No Notes added Yet!</b> </p>';
+							temp += '</div></div>';
+							document.getElementById('getnotesData').innerHTML = temp;
+							$('#addnoteModal').modal('hide');
+			      	}
+	          } else {
+	              printErrorMsg(response.error);
+	          }
+	        }
+	    });
+    }
+  });
+
+
+    $("form[name='edit_notes_form']").validate({
+    	ignore: [],
+    // Specify validation rules
+    rules: {
+    editnotes: {
+        required: true,
+      },
+    },
+    // Specify validation error messages
+    messages: {
+      editnotes:{
+         required: "<strong>Please enter notes</strong>",
+      }
+    },
+    // Make sure the form is submitted to the destination defined
+    // in the "action" attribute of the form when valid
+    submitHandler: function(form) {
+    	var notesId = $('#Id').val();
+    	var notesval = $('#editnotes').val();
+      	$.ajax({
+	      url: '{{Route("business.update_notes")}}',
+	      type: 'POST',
+	      data : {
+	              '_token': "{{ csrf_token() }}",
+	              'Id' : notesId,
+	              'editnotes':notesval
+	          },
+	      success: function(response) {
+	          if ($.isEmptyObject(response.error)) {
+	              var data =  response.notes_data;
+	              var temp = '';
+			      	if(data.length > 0){
+				      		$.each(data, function(i, d) {
+				        	let created_at = d.created_at;
+				          	let first_date = moment(created_at, 'YYYY-MM-DD HH:mm:ss').format('ddd, MMMM DD YYYY HH:mm:A');
+				          	$('#customerId').val(d.customer_id);
+				          	
+				          	temp += '<div class="d-flex align-items-center notes-inner "><div class="flex-grow-1 me-3 ">';
+				          	temp += '<p class="para mb-0">'+ d.notes_data +'</p>';
+							temp += '<small class="text-muted"><i>' +first_date + '</i></small></div>';
+							temp += '<div class="flex-shrink-0">';
+							temp += '<a class="edit-icon edit_notes" href="javascript:void(0)" data-id="'+ d.id +'"><i class="fa fa-pencil"></i></a></div></div>';
+							document.getElementById('getnotesData').innerHTML = temp;
+							$('#editnoteModal').modal('hide');
+
+				        });
+				      		
+			      	}else{
+			      	
+				          	temp += '<div class="d-flex align-items-center notes-inner "><div class="flex-grow-1 me-3 ">';
+				          	temp += '<p class="para mb-0" style="text-align:center; color:#a3dbba;"><b>No Notes added Yet!</b> </p>';
+							temp += '</div></div>';
+							document.getElementById('getnotesData').innerHTML = temp;
+							$('#editnoteModal').modal('hide');
+			      	}
+	          } else {
+	              printErrorMsg(response.error);
+	          }
+	        }
+	    });
+    }
+  });
+
 
     $("form[name='edit_customer_form']").validate({
     	ignore: [],
@@ -884,6 +996,113 @@
 	          $('#edit_phone').val(d.phone_number);
 	        });
 	        $('#editwaitlistModal').modal('show');
+	      }
+	    });
+
+
+  	});
+
+  	$(document).on('click', '.get_details', function() {
+
+	    var id = $(this).data("id");
+	    $.ajax({
+	      headers: {
+	        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	      },
+	      url: '{{ route("business.getcustomer") }}',
+	      type: 'POST',
+	      data: {
+	        id: id
+	      },
+	      success: function(response) {
+	      	console.log(response);
+	        $.each(response.customer_data, function(i, d) {
+	        	let created_at = d.created_at;
+	        	// Mon, May 23 2022, 12:28pm
+	        	// Friday,01 July
+	          	let first_date = moment(created_at, 'YYYY-MM-DD HH:mm:ss').format('ddd, MMMM DD YYYY HH:mm:A'); 
+	        	$('.username').text(d.name);
+	        	$('.userphone').text(d.phone_number);
+	        	$('.uservisit').text(d.visit_count);
+	          	$('.userdate').text(first_date);
+	          	if(d.status == '1'){
+	          		$('.userstate').text('Waiting');
+	          	}
+	          	$('.userlastvisit').text('Today');
+	          	$('#notesclass').attr('data-id', id);
+	          	getnotesdetails(d.id);
+	        });
+	        $('#detailModal').modal('show');
+	      }
+	    });
+
+
+  	});
+
+  	$(document).on('click', '#notesclass', function() {
+
+	    var id = $(this).data("id");
+	    alert(id);
+	    getnotesdetails(id);
+  	});
+
+  	function getnotesdetails(id){
+  		$.ajax({
+	      headers: {
+	        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	      },
+	      url: '{{ route("business.getnotes") }}',
+	      type: 'POST',
+	      data: {
+	        id: id
+	      },
+	      success: function(response) {
+	      	var data =  response.notes_data;
+	      	var temp = '';
+	      	if(data.length > 0){
+		      		$.each(data, function(i, d) {
+		        	let created_at = d.created_at;
+		          	let first_date = moment(created_at, 'YYYY-MM-DD HH:mm:ss').format('ddd, MMMM DD YYYY HH:mm:A');
+		          	$('#customerId').val(d.customer_id);
+		          	temp += '<div class="d-flex align-items-center notes-inner "><div class="flex-grow-1 me-3 ">';
+		          	temp += '<p class="para mb-0">'+ d.notes_data +'</p>';
+					temp += '<small class="text-muted"><i>' +first_date + '</i></small></div>';
+					temp += '<div class="flex-shrink-0">';
+					temp += '<a class="edit-icon edit_notes" href="javascript:void(0)" data-id="'+ d.id +'"><i class="fa fa-pencil"></i></a></div></div>';
+					document.getElementById('getnotesData').innerHTML = temp;		
+		        });
+		      		
+	      	}else{
+		          	temp += '<div class="d-flex align-items-center notes-inner "><div class="flex-grow-1 me-3 ">';
+		          	temp += '<p class="para mb-0" style="text-align:center; color:#a3dbba;"><b>No Notes added Yet!</b> </p>';
+					temp += '</div></div>';
+					document.getElementById('getnotesData').innerHTML = temp;
+	      	}
+
+	        
+	
+	      }
+	    });
+  	}
+
+  		$(document).on('click', '.edit_notes', function() {
+
+	    var id = $(this).data("id");
+	    $.ajax({
+	      headers: {
+	        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	      },
+	      url: '{{ route("business.geteditnotes") }}',
+	      type: 'POST',
+	      data: {
+	        id: id
+	      },
+	      success: function(response) {
+	        $.each(response.notes_data, function(i, d) {
+	        	$('#Id').val(d.id);
+	         	$('#editnotes').text(d.notes_data);
+	        });
+	        $('#editnoteModal').modal('show');
 	      }
 	    });
 

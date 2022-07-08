@@ -18,7 +18,7 @@ class CreateCustomerNotesTable extends Migration
             $table->text('notes_data')->nullable();
             $table->string('user_id')->nullable();
             $table->string('customer_id')->nullable();
-            $table->string('status')->default('1');
+            $table->string('status')->default('1')->comment('1 for waiting');
             $table->string('is_deleted')->default('0');
             $table->timestamps();
         });

@@ -161,7 +161,7 @@ class ServiceController extends Controller
 
     //post method function for adding new service
     public function update_services(Request $request){
-        dd($request->all());
+        // dd($request->all());
         $id = $request->serviceid;
         $Services = Services::findOrFail($id);
         

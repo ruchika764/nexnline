@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 class ProfileController extends Controller
 {
     public function profile(){
-        $userid = Auth::user()->id; 
+        $userid = Auth::User()->id; 
         $user_details = User::findOrFail($userid);
         $countries = DB::table('countries')->select('*')->get();
         $states = DB::table('states')->select('*')->get();

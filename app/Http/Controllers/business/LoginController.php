@@ -6,10 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use App\Models\Settings;
+use Illuminate\Database\Seeders\SettingSeeder;
 use Illuminate\Support\Facades\Mail;
 use DB;
 use Illuminate\Support\Facades\Hash;
@@ -98,8 +101,13 @@ class LoginController extends Controller
             'confirm_password' => 'required|same:password',
         ]);
         if ($validator->passes()) {
+            $random = Str::random(8);
+            $waitlist_link = url('/') . '/welcome/'.$random;
+            $booking_link = url('/') . '/book/'.$random;
             $user->name = $request->username;
             $user->email = $request->email;
+            $user->waitlist_public_link = $waitlist_link;
+            $user->booking_public_link = $booking_link;
             $user->password =  Hash::make($request->password);
             $user->save();
             //send login email to user code starts
@@ -112,6 +120,13 @@ class LoginController extends Controller
                 $message->from('ruchikaindiit@gmail.com', 'Nexnline');
             });
 
+            //add data in settings table code starts
+            $data = new \Database\Seeders\SettingSeeder();
+            $data->run($user->id);
+                // $settings = new SettingSeeder();
+                // $settings->run($user->id);
+            //add data in settings table code ends
+            
             //send login email to user code ends
             Auth::login($user);
             return redirect()->route('business.waitlist');
