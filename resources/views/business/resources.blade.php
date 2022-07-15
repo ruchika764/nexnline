@@ -167,7 +167,7 @@
 		</div>
 		<div class="modal fade" id="editresourceModal" tabindex="-1" aria-labelledby="editresourceModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-lg">
-				<form method="POST" name="edit_resource_form" id="edit_resource_form" action="{{ route('business.update_resources') }}">
+				<form method="POST" name="edit_resource_form" id="edit_resource_form" action="{{ route('business.update_resources') }}" enctype="multipart/form-data">
                   	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<div class="modal-content">
                   		<input type="hidden" name="resourceid" value="" id="resourceid">
@@ -207,35 +207,38 @@
 											<div class="col-md-12">
 								  				<div class="form-group">
 								  					<label>Services provided</label>
-													<select class="multipleChosen" multiple="true">
-														<option value="1" selected>Nails</option>
-														<option value="2" selected>Brows</option>
+								  					<select class="multipleChosen" name="edit_service_provided[]" id="edit_service_provided" multiple="true" placeholder="Select services">
+														<option value="" disabled>Select the service</option>
+														@foreach($services as $service)
+														<option value="{{$service->id}}">{{$service->service_name}}</option>
+														@endforeach
 													</select>	
 						          				</div>
 					         				</div>
 										</div>
 									</div>
 									<div class="col-md-3">
-								  		<div class="form-group uploadimg">
+								  <div class="form-group uploadimg">
 										    <label>
 											   Image
 											</label>
 										    <div class="profileimg">
-											     <i class="fa fa-camera"></i>
+										    	<!-- <i class="fa fa-camera"></i> -->
+											     <img class="editserviceimg" src="" style="display: none;" />
 											   </div>
-										    <label for="profileimg" class="browsebtn">
+										    <label for="editprofileimg" class="browsebtn">
 											  Browse
 											</label>
-											<input type="file" id="profileimg" name="profileimg" style="display:none"/>
-									  	</div>
-									</div>
-								</div>
+											<input type="file" id="editprofileimg" name="editprofileimg" style="display:none"/>
+										  </div>
+							</div>
 							</div>
 							<div class="modal-footer">
 								<button type="" class="btn-nav btn-action">Save</button>
 							</div>
 						</div>
 					</div>
+				</div>
 				</form>
 			</div>
 		</div>
@@ -280,20 +283,21 @@ $('#profileimg').on('change', function() {
 });
 });
 
-	$(function(){
-$('#editprofileimg').on('change', function() {
-    var file = $(this).get(0).files;
-    var reader = new FileReader();
-    reader.readAsDataURL(file[0]);
-    reader.addEventListener("load", function(e) {
-    var image = e.target.result;
-    console.log(image,'image');
-    $('.imgicon').css('display','none');
-    $('.serviceimg').css('display','block');
-	$(".serviceimg").attr('src', image);
-});
-});
-});
+	function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                     $('.editserviceimg').css('display','block');
+					$(".editserviceimg").attr('src', e.target.result);
+                }
+                console.log(input.files[0]);
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+	$("#editprofileimg").change(function() {
+            readURL(this);
+        });
 </script>
 
 <script>
@@ -520,6 +524,18 @@ $('#editprofileimg').on('change', function() {
 	          $('#edit_description').text(d.description);
 	          $('#edit_phone_number').val(d.phone_number);
 	          $('#edit_email').val(d.email);
+	          var Image =  d.avatar;
+	          var base_url = '{!! url('/') !!}';
+	          var flagsUrl = base_url + '/assets/business/resources/' +Image;
+	          console.log(flagsUrl);
+	          $('.editserviceimg').css('display','block');
+	          $('.editserviceimg').attr('src',flagsUrl);
+	          var services = d.services_provided;
+	          var serviceValue = services.split(',');
+	          $.each(serviceValue, function(index, value){
+	          	console.log(value);
+	          	$('#edit_service_provided option[value="'+ value +'"]').attr('selected','selected');
+        		});
 	        });
 	        $('#editresourceModal').modal('show');
 	      }

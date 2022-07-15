@@ -97,8 +97,8 @@
           </div>
 </footer>
 		<!-- Footer End -->
-        <!-- <script src="{{ asset('assets/js/plugins.bundle.js') }}"></script> -->
-        <!-- <script src="{{ asset('assets/js/prismjs/prismjs.bundle.js') }}"></script> -->
+        <script src="{{ asset('assets/js/plugins.bundle.js') }}"></script> -->
+        <script src="{{ asset('assets/js/prismjs/prismjs.bundle.js') }}"></script>
         <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
 		<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
       <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
@@ -112,9 +112,9 @@
 		<script src="{{ asset('assets/js/chosen.jquery.min.js') }}"></script>
 		<script src="{{ asset('assets/js/select2.min.js') }}"></script>
 		<script>
-		$(document).ready(function(){
-			$('.timepicker').timepicker({});
-		});
+		// $(document).ready(function(){
+		// 	$('.timepicker').timepicker({});
+		// });
 
 		$(document).ready(function(){
          //Chosen

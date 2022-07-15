@@ -110,4 +110,8 @@ class ProfileController extends Controller
         }
         return redirect(route('business.profile'));
     }
+
+    function save_hours(Request $request){
+      dd($request->all());
+    }
 }

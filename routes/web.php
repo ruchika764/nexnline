@@ -91,12 +91,14 @@ Route::namespace('App\Http\Controllers\business')->name('business.')->prefix('bu
 
 	//waitlist route starts
 	Route::get('/waitlist', [App\Http\Controllers\business\waitlistController::class, 'waitlist'])->name('waitlist')->middleware('auth:user');
+	Route::post('/save_waitlist', [App\Http\Controllers\business\waitlistController::class, 'save_waitlist'])->name('save_waitlist');
 	//waitlist route end
 
 	//profile route starts
 	Route::get('/profile', [App\Http\Controllers\business\ProfileController::class, 'profile'])->name('profile')->middleware('auth:user');
 	Route::post('/update_profile', [App\Http\Controllers\business\ProfileController::class, 'update_profile'])->name('update_profile');
 	Route::post('/update_password', [App\Http\Controllers\business\ProfileController::class, 'update_password'])->name('update_password');
+	Route::post('/save_hours', [App\Http\Controllers\business\ProfileController::class, 'save_hours'])->name('save_hours');
 	//profile routes ends
 
 	//resources routes starts

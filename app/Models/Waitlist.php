@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Settings extends Model
+class Waitlist extends Model
 {
     use HasFactory;
 
@@ -17,16 +17,16 @@ class Settings extends Model
     protected $fillable = [
         'user_id',
         'name',
-        'label',
-        'type',
-        'placeholder',
-        'default_value',
-        'is_show',
+        'clientId',
+        'customer_id',
+        'party_size',
+        'quoted_wait',
+        'phone_number',
+        'user_id',
         'status',
+        'is_served',
+        'visit_count',
         'is_deleted',
-        'is_required',
-        'maximum_number',
-        'minimum_number',
-        'options'
+        'email'
     ];
 }

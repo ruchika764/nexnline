@@ -145,7 +145,7 @@
 		</div>
 		<div class="modal fade" id="editserviceModal" tabindex="-1" aria-labelledby="editserviceModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
-				<form method="POST" name="edit_service_form" id="edit_service_form" action="{{ route('business.update_services') }}">
+				<form method="POST" name="edit_service_form" id="edit_service_form" action="{{ route('business.update_services') }}" enctype="multipart/form-data">
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<div class="modal-content">
                   <input type="hidden" name="serviceid" value="" id="serviceid">
@@ -243,22 +243,37 @@ $('#profileimg').on('change', function() {
 });
 });
 });
+	function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                     $('.editserviceimg').css('display','block');
+					$(".editserviceimg").attr('src', e.target.result);
+                }
+                console.log(input.files[0]);
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
 
-	$(function(){
-$('#editprofileimg').on('change', function() {
-    var file = $(this).get(0).files;
-    var reader = new FileReader();
-    reader.readAsDataURL(file[0]);
-    reader.addEventListener("load", function(e) {
-    var image = e.target.result;
-    // console.log(image);
-    console.log(image,'image');
-    // $('.imgicon').css('display','none');
-    $('.editserviceimg').css('display','block');
-	$(".editserviceimg").attr('src', image);
-});
-});
-});
+	$("#editprofileimg").change(function() {
+            readURL(this);
+        });
+
+// 	$(function(){
+// $('#editprofileimg').on('change', function() {
+//     var file1 = $(this).get(0).files;
+//     var reader1 = new FileReader();
+//     reader1.readAsDataURL(file1[0]);
+//     reader1.addEventListener("load", function(e) {
+//     var image1 = e.target.result;
+//     // console.log(image);
+//     console.log(image1,'image1');
+//     // $('.imgicon').css('display','none');
+//     $('.editserviceimg').css('display','block');
+// 	$(".editserviceimg").attr('src', image1);
+// });
+// });
+// });
 </script>
 
 <script>

@@ -180,8 +180,7 @@ class ServiceController extends Controller
             // dd($validator);
             return redirect(route('business.services'))->withErrors($validator)->withInput();
           } 
-
-                
+    
         $oldphoto = $Services['image'];
         if($request->hasfile('editprofileimg')){
             $file = $request->file('editprofileimg');

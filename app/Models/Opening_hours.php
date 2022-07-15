@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Settings extends Model
+class Opening_hours extends Model
 {
     use HasFactory;
 
@@ -16,17 +16,10 @@ class Settings extends Model
      */
     protected $fillable = [
         'user_id',
-        'name',
-        'label',
-        'type',
-        'placeholder',
-        'default_value',
-        'is_show',
-        'status',
+        'day',
+        'opening_hour',
+        'closing_hour',
         'is_deleted',
-        'is_required',
-        'maximum_number',
-        'minimum_number',
-        'options'
+        'status'
     ];
 }

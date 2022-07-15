@@ -102,101 +102,7 @@
 											</tr>
 											</thead>
 												<tbody id="customer_tableListing">
-													<!-- <tr>
-														<td><a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#detailModal"><b>John Smith</b></a></td>
-														<td>078965 41200</td>
-														<td>2</td>
-														<td>Tue, May 24 2022, 2:31pm</td>
-														<td>
-															<div class="dropdown dropup d-inline-block">
-																<a class="btn-action btn-view dropdown-toggle" href="javascript:void(0)" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-																<i class="fa fa-ellipsis-h"></i>
-																</a>
-																<ul class="dropdown-menu " aria-labelledby="navbarDropdown">
-																	<li><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#detailModal"><i class="fa fa-comment-o"></i>Chat</a></li>	
-																	<li><a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-clock-o"></i>Add To Waitlist</a></li>
-																	<li><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#editwaitlistModal"><i class="fa fa-pencil"></i>Edit</a></li>
-																	<li><a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-trash"></i>Remove</a></li>
-																</ul>
-															</div>
-														</td>
-													</tr>
-														<tr>
-														<td><a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#detailModal"><b>Adam Jones</b></a></td>
-														<td>078965 41200</td>
-														<td>2</td>
-														<td>Tue, May 24 2022, 2:31pm</td>
-														<td>
-															<div class="dropdown dropup d-inline-block">
-																<a class="btn-action btn-view dropdown-toggle" href="javascript:void(0)" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-																<i class="fa fa-ellipsis-h"></i>
-																</a>
-																<ul class="dropdown-menu " aria-labelledby="navbarDropdown">
-																	<li><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#detailModal"><i class="fa fa-comment-o"></i>Chat</a></li>	
-																	<li><a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-clock-o"></i>Add To Waitlist</a></li>
-																	<li><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#editwaitlistModal"><i class="fa fa-pencil"></i>Edit</a></li>
-																	<li><a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-trash"></i>Remove</a></li>
-																</ul>
-															</div>
-														</td>
-													</tr>
-														<tr>
-														<td><a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#detailModal"><b>Maria James</b></a></td>
-														<td>078965 41200</td>
-														<td>2</td>
-														<td>Tue, May 24 2022, 2:31pm</td>
-														<td>
-															<div class="dropdown dropup d-inline-block">
-																<a class="btn-action btn-view dropdown-toggle" href="javascript:void(0)" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-																<i class="fa fa-ellipsis-h"></i>
-																</a>
-																<ul class="dropdown-menu " aria-labelledby="navbarDropdown">
-																	<li><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#detailModal"><i class="fa fa-comment-o"></i>Chat</a></li>	
-																	<li><a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-clock-o"></i>Add To Waitlist</a></li>
-																	<li><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#editwaitlistModal"><i class="fa fa-pencil"></i>Edit</a></li>
-																	<li><a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-trash"></i>Remove</a></li>
-																</ul>
-															</div>
-														</td>
-													</tr>
-														<tr>
-														<td><a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#detailModal"><b>Andrew James</b></a></td>
-														<td>078965 41200</td>
-														<td>4</td>
-														<td>Tue, May 24 2022, 2:31pm</td>
-														<td>
-															<div class="dropdown dropup d-inline-block">
-																<a class="btn-action btn-view dropdown-toggle" href="javascript:void(0)" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-																<i class="fa fa-ellipsis-h"></i>
-																</a>
-																<ul class="dropdown-menu " aria-labelledby="navbarDropdown">
-																	<li><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#detailModal"><i class="fa fa-comment-o"></i>Chat</a></li>	
-																	<li><a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-clock-o"></i>Add To Waitlist</a></li>
-																	<li><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#editwaitlistModal"><i class="fa fa-pencil"></i>Edit</a></li>
-																	<li><a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-trash"></i>Remove</a></li>
-																</ul>
-															</div>
-														</td>
-													</tr>
-														<tr>
-														<td><a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#detailModal"><b>John Smith</b></a></td>
-														<td>078965 41200</td>
-														<td>2</td>
-														<td>Tue, May 24 2022, 2:31pm</td>
-														<td>
-															<div class="dropdown dropup d-inline-block">
-																<a class="btn-action btn-view dropdown-toggle" href="javascript:void(0)" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-																<i class="fa fa-ellipsis-h"></i>
-																</a>
-																<ul class="dropdown-menu " aria-labelledby="navbarDropdown">
-																	<li><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#detailModal"><i class="fa fa-comment-o"></i>Chat</a></li>	
-																	<li><a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-clock-o"></i>Add To Waitlist</a></li>
-																	<li><a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#editwaitlistModal"><i class="fa fa-pencil"></i>Edit</a></li>
-																	<li><a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-trash"></i>Remove</a></li>
-																</ul>
-															</div>
-														</td>
-													</tr> -->
+													
 												</tbody>
 											</table>
 										</div>
@@ -1042,8 +948,9 @@
   	$(document).on('click', '#notesclass', function() {
 
 	    var id = $(this).data("id");
-	    alert(id);
+	    $('.notes-tab').css('display','block');
 	    getnotesdetails(id);
+	    
   	});
 
   	function getnotesdetails(id){

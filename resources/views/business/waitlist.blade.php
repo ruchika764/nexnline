@@ -9,7 +9,7 @@
 						<div class="col-md-12">
 							<h1>Waitlist</h1>
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item active"><a href="index.html">Home</a></li>
+								<li class="breadcrumb-item active"><a href="{{route('index')}}">Home</a></li>
 								<li class="breadcrumb-item">Waitlist</li>
 							</ol>
 						</div>
@@ -22,6 +22,29 @@
 					<div class="row">
 						@include('business.layouts.sidebar')
 						<div class="col-lg-8 col-xl-9 col-xxl-9 col-md-8">
+							<div id="response">
+									@if(Session::has('message'))
+									<div class="alert alert-success alert-dismissable" role="alert">
+										<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+										{{ Session::get('message') }}
+									</div>
+									@endif
+									@if(Session::has('error'))
+									<div class="alert alert-danger alert-dismissable">
+										<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+										{{ Session::get('error') }}
+									</div>
+									@endif
+									@if ($errors->any())
+									<div class="alert alert-danger">
+										<ul>
+											@foreach ($errors->all() as $error)
+											<li>{{ $error }}</li>
+											@endforeach
+										</ul>
+									</div>
+									@endif
+								</div>
 							<div class="card ">
 								<div class="card-header p-3">
 									<div class="row align-items-center">
@@ -173,61 +196,66 @@
 		</div>
 
 
-<div class="modal fade" id="waitlistModal" tabindex="-1" aria-labelledby="waitlistModalLabel" aria-hidden="true">
-			<div class="modal-dialog modal-lg">
+	<div class="modal fade" id="waitlistModal" tabindex="-1" aria-labelledby="waitlistModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<form method="POST" id="add_waitlist_form" name="add_waitlist_form"  enctype="multipart/form-data" action="{{route('business.save_waitlist')}}">
+				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="exampleModalLabel">Add Client To Waitlist</h5>
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
+						@if(!empty($settings))
 						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Client Name</label>
-									<input type="text" name="name" class="form-control" placeholder="Enter Client Name">
+							@foreach($settings as $setting)
+							<?php 
+								$type = 'text';
+								if($setting->type == 'type1'){
+									$type = 'text';
+								}else if($setting->type == 'type3'){
+									$type = 'number';
+								}else if($setting->type == 'type5'){
+									$type = 'date';
+								}else if($setting->type == 'type7'){
+									$type = 'url';
+								}else{
+									$type = 'text';
+								}
+							?>
+							@if($setting->is_show == 1)
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>{{$setting->label}}</label>
+										@if($setting->type == 'type1' || $setting->type == 'type3' || $setting->type == 'type5' ||$setting->type == 'type7')
+										<input type="{{$type}}" name="{{$setting->name}}" id="{{$setting->name}}" class="form-control" placeholder="{{$setting->placeholder}}" data-id = "{{$setting->id}}" data-required ="{{$setting->is_required}}" <?php if($setting->is_required) {echo 'required';} else{ echo ''; }?>>
+										@elseif($setting->type == 'type2')
+										<textarea name="{{$setting->name}}" id="{{$setting->name}}" placeholder="{{$setting->placeholder}}" data-id = "{{$setting->id}}" data-required ="{{$setting->is_required}}" <?php if($setting->is_required) {echo 'required';} else{ echo ''; }?>></textarea>
+										@elseif($setting->type == 'type4')
+										<select name="{{$setting->name}}" placeholder="{{$setting->placeholder}}" id="{{$setting->name}}" data-id = "{{$setting->id}}" data-required ="{{$setting->is_required}}" <?php if($setting->is_required) {echo 'required';} else{ echo ''; }?>>
+											@if($setting->options != Null)
+												<?php $getoptions = explode(',',$setting->options); ?>
+												@foreach($getoptions as $option)
+												<option>{{$option}}</option>
+												@endforeach
+											@endif
+										</select>
+										@else
+
+										@endif
+									</div>
+									<span id="error_{{$setting->id}}" name="error_{{$setting->id}}"></span>
 								</div>
+								@endif
+								@endforeach
 							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Phone</label>
-									<input type="tel" name="phone" class="form-control" placeholder="Enter Phone No">
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Choose service</label>
-									<select  class="form-control">
-										<option>--Select--</option>
-										<option>Nails</option>
-										<option>Brows</option>
-									</select>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Staff</label>
-									<select  class="form-control">
-										<option>--Select--</option>
-										<option>Sally</option>
-										<option>Adam</option>
-										<option>Jane</option>
-										<option>James</option>
-									</select>
-								</div>
-							</div>
-							<div class="col-md-12">
-								<div class="form-group">
-									<label>Notes</label>
-									<input type="text" name="notes" class="form-control" placeholder="Additional Notes">
-								</div>
-							</div>
+							@endif
+						</div>
+						<div class="modal-footer">
+							<button type="submit" id="submit_btn" class="btn-nav btn-action">Add</button>
 						</div>
 					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn-nav btn-action">Add</button>
-					</div>
-				</div>
+			</form>
 			</div>
 		</div>
 		<div class="modal fade" id="editwaitlistModal" tabindex="-1" aria-labelledby="waitlistModalLabel" aria-hidden="true">
@@ -854,4 +882,39 @@
 				</div>
 			</div>
 		</div>
+@endsection
+
+@section('scripts')
+<script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
+<script>
+	$(function() {
+	  	$("form[name='add_waitlist_form']").validate({
+	  	// ignore: [],
+	    rules: {
+	    },
+	    errorPlacement: function(error, element) {
+	        if (element.attr("name") == "client_id") {
+	          error.insertAfter("#client_id_err");
+	        }
+	        else {
+	          error.insertAfter(element);
+	        }
+	      },
+	    // Specify validation error messages
+	    messages: 
+	    {
+		    'Name': {
+		        required: "Please enter name",
+		    },
+		    'Email': {
+		        required: "Please enter email",
+		    },
+	    },
+	    submitHandler: function(form) {
+
+	      form.submit();
+	    }
+	  });
+	});
+</script>
 @endsection

@@ -158,7 +158,7 @@ class ResourceController extends Controller
     }
 
     //post method function for adding new resource
-    public function update_customer(Request $request){
+    public function update_resources(Request $request){
         $id = $request->resourceid;
         $resources = Resources::findOrFail($id);
         

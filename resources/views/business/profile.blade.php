@@ -99,7 +99,7 @@
 												<div class="form-group">
 													<label>Opening Hours <small class="ms-2">Open 24/7</small></label>
 													<div class="input-group">
-													 <button data-bs-toggle="modal" data-bs-target="#openinghoursModal" class="opening-hours">Set Opening Hours</button>
+													 <button type="button" data-bs-toggle="modal" data-bs-target="#openinghoursModal" class="opening-hours">Set Opening Hours</button>
 												   </div>
 												</div>
 											</div>
@@ -303,8 +303,10 @@
 						<h5 class="modal-title" id="exampleModalLabel">Edit Opening Hours</h5>
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
+					<form method="POST" id="add_hours_form" name="add_hours_form"  enctype="multipart/form-data" action="{{route('business.save_hours')}}">
+					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<div class="modal-body">
-						<div class="row align-items-center opening-hours-list">
+						<div class="row align-items-center opening-hours-list" id="monday_box">
 							<div class="col-md-3 col-6">
 							  <div class="form-group">
 								<h2>Monday</h2>
@@ -312,26 +314,30 @@
 							</div>
 							<div class="col-md-3 col-6">
 								<div class="form-group">
-								   <select class="form-control ">
-									 <option  value="true" selected>Open</option>
-									 <option  value="false">Closed</option>
-									 <option  value="all">All day</option>
+								   <select class="form-control" id="opening_type_monday" name="opening_type_monday">
+									 <option  value="0" selected>Open</option>
+									 <option  value="1">Closed</option>
+									 <option  value="2">All day</option>
 								  </select>
 								</div>
 							</div>
-							<div class="col-md-3 col-6">
-								<div class="form-group">
-								   <input text="text" class="form-control timepicker" value="09:00am"/>
-								</div>
-							</div>
-							<div class="col-md-3 col-6">
-								<div class="form-group">
-								   <input text="text" class="form-control timepicker" value="06:00pm"/>
+							<div class="col-md-6 col-12" id="opening_div_monday" style="display:block;">
+								<div class="row">
+									<div class="col-md-6 col-6">
+										<div class="form-group">
+										   <input text="text" class="form-control  kt_timepicker_1" name="monday_start_time" id="datetimepicker5" value="09:00am"/>
+										</div>
+									</div>
+									<div class="col-md-6 col-6">
+										<div class="form-group">
+										   <input text="text" class="form-control timepicker end_timepick" name="monday_end_time" id="monday_end_time" value="06:00pm"/>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
-					
-						<div class="row align-items-center opening-hours-list">
+
+						<div class="row align-items-center opening-hours-list" id="tuesday_box">
 							<div class="col-md-3 col-6">
 							  <div class="form-group">
 								<h2>Tuesday</h2>
@@ -339,26 +345,30 @@
 							</div>
 							<div class="col-md-3 col-6">
 								<div class="form-group">
-								   <select class="form-control ">
-									 <option  value="true" selected>Open</option>
-									 <option  value="false">Closed</option>
-									 <option  value="all">All day</option>
+								   <select class="form-control" id="opening_type_tuesday" name="opening_type_tuesday">
+									 <option  value="0" selected>Open</option>
+									 <option  value="1">Closed</option>
+									 <option  value="2">All day</option>
 								  </select>
 								</div>
 							</div>
-							<div class="col-md-3 col-6">
-								<div class="form-group">
-								   <input text="text" class="form-control timepicker" value="09:00am"/>
-								</div>
-							</div>
-							<div class="col-md-3 col-6">
-								<div class="form-group">
-								   <input text="text" class="form-control timepicker" value="06:00pm"/>
+							<div class="col-md-6 col-12" id="opening_div_tuesday" style="display:block;">
+								<div class="row">
+									<div class="col-md-6 col-6">
+										<div class="form-group">
+										   <input text="text" class="form-control timepicker start_timepick" value="09:00am" name="tuesday_start_time" id="tuesday_start_time"/>
+										</div>
+									</div>
+									<div class="col-md-6 col-6">
+										<div class="form-group">
+										   <input text="text" class="form-control timepicker end_timepick" name="tuesday_end_time" id="tuesday_end_time" value="06:00pm"/>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
 					
-						<div class="row align-items-center opening-hours-list">
+						<div class="row align-items-center opening-hours-list" id="wednesday_box">
 							<div class="col-md-3 col-6">
 							  <div class="form-group">
 								<h2>Wednesday</h2>
@@ -366,26 +376,30 @@
 							</div>
 							<div class="col-md-3 col-6">
 								<div class="form-group">
-								   <select class="form-control ">
-									 <option  value="true" selected>Open</option>
-									 <option  value="false">Closed</option>
-									 <option  value="all">All day</option>
+								   <select class="form-control " id="opening_type_wednesday" name="opening_type_wednesday">
+									 <option  value="0" selected>Open</option>
+									 <option  value="1">Closed</option>
+									 <option  value="2">All day</option>
 								  </select>
 								</div>
 							</div>
-							<div class="col-md-3 col-6">
-								<div class="form-group">
-								   <input text="text" class="form-control timepicker" value="09:00am"/>
-								</div>
-							</div>
-							<div class="col-md-3 col-6">
-								<div class="form-group">
-								   <input text="text" class="form-control timepicker" value="06:00pm"/>
+							<div class="col-md-6 col-12" id="opening_div_wednesday" style="display:block;">
+								<div class="row">
+									<div class="col-md-6 col-6">
+										<div class="form-group">
+										   <input text="text" class="form-control timepicker" value="09:00am" name="wednesday_start_time" id="wednesday_start_time"/>
+										</div>
+									</div>
+									<div class="col-md-6 col-6">
+										<div class="form-group">
+										   <input text="text" class="form-control timepicker" value="06:00pm" name="wednesday_end_time" id="wednesday_end_time" />
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
 					
-						<div class="row align-items-center opening-hours-list">
+						<div class="row align-items-center opening-hours-list" id="thursday_box">
 							<div class="col-md-3 col-6">
 							  <div class="form-group">
 								<h2>Thursday</h2>
@@ -393,26 +407,30 @@
 							</div>
 							<div class="col-md-3 col-6">
 								<div class="form-group">
-								   <select class="form-control ">
-									 <option  value="true" selected>Open</option>
-									 <option  value="false">Closed</option>
-									 <option  value="all">All day</option>
+								   <select class="form-control " id="opening_type_thursday" name="opening_type_thursday">
+									 <option  value="0" selected>Open</option>
+									 <option  value="1">Closed</option>
+									 <option  value="2">All day</option>
 								  </select>
 								</div>
 							</div>
-							<div class="col-md-3 col-6">
-								<div class="form-group">
-								   <input text="text" class="form-control timepicker" value="09:00am"/>
-								</div>
-							</div>
-							<div class="col-md-3 col-6">
-								<div class="form-group">
-								   <input text="text" class="form-control timepicker" value="06:00pm"/>
+							<div class="col-md-6 col-12" id="opening_div_thursday" style="display:block;">
+								<div class="row">
+									<div class="col-md-6 col-6">
+										<div class="form-group">
+										   <input text="text" class="form-control timepicker" value="09:00am" name="thursday_start_time" id="thursday_start_time"/>
+										</div>
+									</div>
+									<div class="col-md-6 col-6">
+										<div class="form-group">
+										   <input text="text" class="form-control timepicker" value="06:00pm" name="thursday_end_time" id="thursday_end_time"/>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
 					
-						<div class="row align-items-center opening-hours-list">
+						<div class="row align-items-center opening-hours-list" id="friday_box">
 							<div class="col-md-3 col-6">
 							  <div class="form-group">
 								<h2>Friday</h2>
@@ -420,26 +438,30 @@
 							</div>
 							<div class="col-md-3 col-6">
 								<div class="form-group">
-								   <select class="form-control ">
-									 <option  value="true" selected>Open</option>
-									 <option  value="false">Closed</option>
-									 <option  value="all">All day</option>
+								   <select class="form-control " id="opening_type_friday" name="opening_type_friday">
+									 <option  value="0" selected>Open</option>
+									 <option  value="1">Closed</option>
+									 <option  value="2">All day</option>
 								  </select>
 								</div>
 							</div>
-							<div class="col-md-3 col-6">
-								<div class="form-group">
-								   <input text="text" class="form-control timepicker" value="09:00am"/>
-								</div>
-							</div>
-							<div class="col-md-3 col-6">
-								<div class="form-group">
-								   <input text="text" class="form-control timepicker" value="06:00pm"/>
+							<div class="col-md-6 col-12" id="opening_div_friday" style="display:block;">
+								<div class="row">
+									<div class="col-md-6 col-6">
+										<div class="form-group">
+										   <input text="text" class="form-control timepicker" value="09:00am" name="friday_start_time" id="friday_start_time"/>
+										</div>
+									</div>
+									<div class="col-md-6 col-6">
+										<div class="form-group">
+										   <input text="text" class="form-control timepicker" value="06:00pm" name="friday_end_time" id="friday_end_time"/>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
 					
-						<div class="row align-items-center opening-hours-list">
+						<div class="row align-items-center opening-hours-list" id="saturday_box">
 							<div class="col-md-3 col-6">
 							  <div class="form-group">
 								<h2>Saturday</h2>
@@ -447,26 +469,30 @@
 							</div>
 							<div class="col-md-3 col-6">
 								<div class="form-group">
-								   <select class="form-control ">
-									 <option  value="true" selected>Open</option>
-									 <option  value="false">Closed</option>
-									 <option  value="all">All day</option>
+								   <select class="form-control " id="opening_type_saturday" name="opening_type_saturday">
+									 <option  value="0" selected>Open</option>
+									 <option  value="1">Closed</option>
+									 <option  value="2">All day</option>
 								  </select>
 								</div>
 							</div>
-							<div class="col-md-3 col-6">
-								<div class="form-group">
-								   <input text="text" class="form-control timepicker" value="09:00am"/>
-								</div>
-							</div>
-							<div class="col-md-3 col-6">
-								<div class="form-group">
-								   <input text="text" class="form-control timepicker" value="06:00pm"/>
+							<div class="col-md-6 col-12" id="opening_div_saturday" style="display:block;">
+								<div class="row">
+									<div class="col-md-6 col-6">
+										<div class="form-group">
+										   <input text="text" class="form-control timepicker" value="09:00am" name="saturday_start_time" id="saturday_start_time"/>
+										</div>
+									</div>
+									<div class="col-md-6 col-6">
+										<div class="form-group">
+										   <input text="text" class="form-control timepicker" value="06:00pm" name="saturday_end_time" id="saturday_end_time"/>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
 				
-						<div class="row align-items-center opening-hours-list">
+						<div class="row align-items-center opening-hours-list" id="sunday_box">
 							<div class="col-md-3 col-6">
 							  <div class="form-group">
 								<h2>Sunday</h2>
@@ -474,21 +500,25 @@
 							</div>
 							<div class="col-md-3 col-6">
 								<div class="form-group">
-								   <select class="form-control ">
-									 <option  value="true" selected>Open</option>
-									 <option  value="false">Closed</option>
-									 <option  value="all">All day</option>
+								   <select class="form-control " id="opening_type_sunday" name="opening_type_sunday">
+									 <option  value="0" selected>Open</option>
+									 <option  value="1">Closed</option>
+									 <option  value="2">All day</option>
 								  </select>
 								</div>
 							</div>
-							<div class="col-md-3 col-6">
-								<div class="form-group">
-								   <input text="text" class="form-control timepicker" value="09:00am"/>
-								</div>
-							</div>
-							<div class="col-md-3 col-6">
-								<div class="form-group">
-								   <input text="text" class="form-control timepicker" value="06:00pm"/>
+							<div class="col-md-6 col-12" id="opening_div_sunday" style="display:block;">
+								<div class="row">
+									<div class="col-md-6 col-6">
+										<div class="form-group">
+										   <input text="text" class="form-control timepicker" value="09:00am" name="sunday_start_time" id="sunday_start_time"/>
+										</div>
+									</div>
+									<div class="col-md-6 col-6">
+										<div class="form-group">
+										   <input text="text" class="form-control timepicker" value="06:00pm" name="sunday_end_time" id="sunday_end_time"/>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -496,8 +526,9 @@
 					<div class="modal-footer">
 						<button type="button" class="btn-clear btn-nav btn-action">Clear All</button>
 						<button type="button" class="btn-clear btn-nav btn-action">Reset</button>
-						<button type="button" class="btn-nav btn-action">Save</button>
+						<button type="submit" class="btn-nav btn-action">Save</button>
 					</div>
+				</form>
 				</div>
 			</div>
 		</div>
@@ -507,9 +538,90 @@
 
 @section('scripts')
 <script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script type="text/javascript" src="http://zebrazookeeper.com/assets//user/assets/js/pages/crud/forms/widgets/bootstrap-timepicker.js"></script>
+<script>
+	$(document).on('focus', '.kt_timepicker_1', function(){
+        $(this).timepicker();
+    });
+    $(document).on('change', '.kt_timepicker_1', function(){
+        console.log('hello');
+    });
+    $(function () {
+    $('#datetimepicker5').datetimepicker({
+        use24hours: true,
+        format: 'HH:mm'
+    });
+});
+</script>
+
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('.imgicon').css('display','none');
+
+		$('#opening_type_monday').on('change',function(){
+			var optval = $(this).val();
+			if(optval == 1 || optval == 2){
+				$('#opening_div_monday').css('display','none');
+			}else{
+				$('#opening_div_monday').css('display','block');
+			}
+		});
+
+		$('#opening_type_tuesday').on('change',function(){
+			var optval = $(this).val();
+			if(optval == 1 || optval == 2){
+				$('#opening_div_tuesday').css('display','none');
+			}else{
+				$('#opening_div_tuesday').css('display','block');
+			}
+		});
+
+		$('#opening_type_wednesday').on('change',function(){
+			var optval = $(this).val();
+			if(optval == 1 || optval == 2){
+				$('#opening_div_wednesday').css('display','none');
+			}else{
+				$('#opening_div_wednesday').css('display','block');
+			}
+		});
+
+		$('#opening_type_thursday').on('change',function(){
+			var optval = $(this).val();
+			if(optval == 1 || optval == 2){
+				$('#opening_div_thursday').css('display','none');
+			}else{
+				$('#opening_div_thursday').css('display','block');
+			}
+		});
+
+		$('#opening_type_friday').on('change',function(){
+			var optval = $(this).val();
+			if(optval == 1 || optval == 2){
+				$('#opening_div_friday').css('display','none');
+			}else{
+				$('#opening_div_friday').css('display','block');
+			}
+		});
+
+		$('#opening_type_saturday').on('change',function(){
+			var optval = $(this).val();
+			if(optval == 1 || optval == 2){
+				$('#opening_div_saturday').css('display','none');
+			}else{
+				$('#opening_div_saturday').css('display','block');
+			}
+		});
+
+		$('#opening_type_sunday').on('change',function(){
+			var optval = $(this).val();
+			if(optval == 1 || optval == 2){
+				$('#opening_div_sunday').css('display','none');
+			}else{
+				$('#opening_div_sunday').css('display','block');
+			}
+		});
 	});
 $(function(){
 $('#profileimg').on('change', function() {

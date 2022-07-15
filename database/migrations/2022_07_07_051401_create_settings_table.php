@@ -21,6 +21,9 @@ class CreateSettingsTable extends Migration
             $table->string('type')->nullable();
             $table->string('placeholder')->nullable();
             $table->string('default_value')->nullable();
+            $table->string('maximum_number')->nullable();
+            $table->string('minimum_number')->nullable();
+            $table->string('options')->nullable();
             $table->string('is_show')->default('0');
             $table->string('status')->default('1');
             $table->string('is_deleted')->default('0');

@@ -48,6 +48,16 @@ class SettingsController extends Controller
         if(isset($request->required_field)){
         	$settings_data->is_required = $request->required_field;
         }
+        if(isset($request->maximum_number)){
+        	$settings_data->maximum_number = $request->maximum_number;
+        }
+        if(isset($request->minimum_number)){
+        	$settings_data->minimum_number = $request->minimum_number;
+        }
+        if(isset($request->add_options)){
+        	$add_value = $request->add_options;
+        	$settings_data->options = $add_value[0];
+        }
         $settings_data->save();
        Session::flash('message', 'New Field Added Successfully!!');
        return redirect(route('business.settings'));
@@ -87,8 +97,28 @@ class SettingsController extends Controller
         if(isset($request->edit_required_field)){
         	$settings_data->is_required = $request->edit_required_field;
         }
+        if(isset($request->edit_maximum_number)){
+        	$settings_data->maximum_number = $request->edit_maximum_number;
+        }
+        if(isset($request->edit_minimum_number)){
+        	$settings_data->minimum_number = $request->edit_minimum_number;
+        }
+        if(isset($request->edit_options)){
+        	$edit_value = $request->edit_options;
+        	$settings_data->options = $edit_value[0];
+        }
         $settings_data->save();
        Session::flash('message', 'Fields Updated Successfully!!');
        return redirect(route('business.settings'));
+    }
+
+    public function updatetoggle(Request $request){
+    	$updateId = $request->id;
+    	$updateVal = $request->val;
+    	$settings_data = Settings::select('*')->where('id',$updateId)->first();
+    	
+    	$settings_data->is_show = $updateVal;
+    	$settings_data->save();
+    	return response()->json(['success' => true]);
     }
 }
