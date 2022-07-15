@@ -17,7 +17,7 @@ class SettingsController extends Controller
     public function settings(){
     	$userid = Auth::User()->id;
     	$settings = Settings::select('*')->where('user_id',$userid)->get();
-    	return view('business.Settings',compact('settings'));
+    	return view('business.settings',compact('settings'));
     }
 
     //post method function for adding new fields
